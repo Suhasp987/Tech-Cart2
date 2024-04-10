@@ -1,0 +1,125 @@
+<div class="container mt-5">
+    <h2 class="mb-4">Place Fitness Trainer Appointment</h2>
+    
+    <form [formGroup]="fitnessForm" (ngSubmit)="onSubmit()">
+      <!-- Name and Age -->
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="First Name" formControlName="firstname">
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" placeholder="Age" formControlName="age">
+        </div>
+      </div>
+  
+      <!-- Email and Mobile No -->
+      <div class="row mb-3">
+        <div class="col">
+          <input type="email" class="form-control" placeholder="Email" formControlName="email">
+        </div>
+        <div class="col">
+          <input type="tel" class="form-control" placeholder="Mobile No" formControlName="phonenumber">
+        </div>
+      </div>
+  
+      <!-- Address -->
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Address Line 1" formControlName="streetaddress">
+      </div>
+  
+      <!-- Address Line 2 -->
+      <div class="mb-3">
+        <input type="text" class="form-control" placeholder="Address Line 2" formControlName="addressline2">
+      </div>
+  
+      <!-- City and State -->
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="City" formControlName="city">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="State" formControlName="state">
+        </div>
+      </div>
+  
+      <!-- Country and Pincode -->
+      <div class="row mb-3">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Country" formControlName="country">
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" placeholder="Pincode" formControlName="pincode">
+        </div>
+      </div>
+  
+      <!-- Trainer Preference -->
+      <div class="mb-3">
+        <label class="mb-2">Trainer Preference:</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="Male Trainer" formControlName="trainerpreference">
+          <label class="form-check-label">Male Trainer</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="Female Trainer" formControlName="trainerpreference">
+          <label class="form-check-label">Female Trainer</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="No Preference" formControlName="trainerpreference">
+          <label class="form-check-label">No Preference</label>
+        </div>
+      </div>
+  
+      <!-- Physiotherapist -->
+      <div class="mb-3">
+        <label class="mb-2">Do you need a Physiotherapist?</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="Yes" formControlName="physiotherapist">
+          <label class="form-check-label">Yes</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="No" formControlName="physiotherapist">
+          <label class="form-check-label">No</label>
+        </div>
+      </div>
+  
+      <!-- Select Package -->
+      <div class="mb-3">
+        <label class="mb-2">Select Package:</label>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="Package A" formControlName="packages">
+          <label class="form-check-label">Package A</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="Package B" formControlName="packages">
+          <label class="form-check-label">Package B</label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" type="radio" value="Package C" formControlName="packages">
+          <label class="form-check-label">Package C</label>
+        </div>
+      </div>
+  
+      <!-- Weeks and Amount (RS) -->
+      <div class="row mb-3">
+        <div class="col">
+          <input  type="number" class="form-control" placeholder="Weeks" formControlName="weeks">
+        </div>
+        <div class="col">
+          <input type="number" class="form-control" placeholder="Amount (RS)" formControlName="amount" [disabled]="true" readonly>
+        </div>
+      </div>
+  
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary">Submit</button>
+  
+      <!-- Validation Messages -->
+      <div *ngIf="fitnessForm.invalid && (fitnessForm.dirty || fitnessForm.touched)" class="mt-3">
+        <div *ngIf="fitnessForm.controls['firstname'].invalid" class="text-danger">Please enter a valid first name.</div>
+        <div *ngIf="fitnessForm.controls['age'].invalid" class="text-danger">Please enter a valid age.</div>
+        <div *ngIf="fitnessForm.controls['email'].invalid" class="text-danger">Please enter a valid email.</div>
+        <div *ngIf="fitnessForm.controls['phonenumber'].invalid" class="text-danger">Please enter a valid phone number.</div>
+        <!-- Add more validation messages for other fields as needed -->
+      </div>
+    </form>
+  </div>
+  
