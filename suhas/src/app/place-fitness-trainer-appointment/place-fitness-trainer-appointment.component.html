@@ -105,7 +105,9 @@
           <input  type="number" class="form-control" placeholder="Weeks" formControlName="weeks">
         </div>
         <div class="col">
-          <input type="number" class="form-control" placeholder="Amount (RS)" formControlName="amount" [disabled]="true" readonly>
+          <label>Amount</label>
+          <input type="number" class="form-control" placeholder="" formControlName="inr" [disabled]="true" readonly>
+          <input type="number" class="form-control" placeholder=""  formControlName="paisa" [disabled]='true' readonly>
         </div>
       </div>
   
@@ -118,6 +120,8 @@
         <div *ngIf="fitnessForm.controls['age'].invalid" class="text-danger">Please enter a valid age.</div>
         <div *ngIf="fitnessForm.controls['email'].invalid" class="text-danger">Please enter a valid email.</div>
         <div *ngIf="fitnessForm.controls['phonenumber'].invalid" class="text-danger">Please enter a valid phone number.</div>
+        <div *ngIf="fitnessForm.controls['addressline2'].invalid" class="text-danger">Please enter a Address Line2.</div>
+        
         <!-- Add more validation messages for other fields as needed -->
       </div>
     </form>

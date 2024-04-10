@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { HttpClientModule } from '@angular/common/http';
 import { ContactUsComponent,Contact } from './contact-us.component';
 import { ReactiveFormsModule } from "@angular/forms";
+import { UserService } from '../_services';
 
 describe('ContactUsComponent', () => {
   let component: ContactUsComponent;
@@ -10,7 +11,8 @@ describe('ContactUsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ContactUsComponent ],
-      imports: [ReactiveFormsModule]
+      providers: [UserService],
+      imports: [ReactiveFormsModule,HttpClientModule]
     })
     .compileComponents();
   }));

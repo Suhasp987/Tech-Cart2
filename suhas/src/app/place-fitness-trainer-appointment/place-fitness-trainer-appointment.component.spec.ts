@@ -134,7 +134,7 @@ describe('PlaceFitnessTrainerAppointmentComponent', () => {
       expect(errors["required"]).toBeTruthy();
   
       // Set email to something
-      // email.setValue("test");
+      email.setValue("test");
       errors = email.errors || {};
       expect(errors["required"]).toBeFalsy();
       expect(errors["pattern"]).toBeTruthy();
@@ -245,45 +245,45 @@ describe('PlaceFitnessTrainerAppointmentComponent', () => {
       errors = pincode.errors || {};
       expect(errors["required"]).toBeFalsy();
     });
-    // it("inr field validation toBeFalsy() toBeTruthy() ", () => {
-    //   let errors:any = {};
-    //   let inr = component.fitnessForm.controls["inr"];
-    //   expect(inr.valid).toBeFalsy();
+    it("inr field validation toBeFalsy() toBeTruthy() ", () => {
+      let errors:any = {};
+      let inr = component.fitnessForm.controls["inr"];
+      expect(inr.valid).toBeFalsy();
   
-    //   // inr field is required
-    //   errors = inr.errors || {};
-    //   expect(errors["required"]).toBeTruthy();
+      // inr field is required
+      errors = inr.errors || {};
+      expect(errors["required"]).toBeTruthy();
   
-    //   // Set inr to something
-    //   inr.setValue(0);
-    //   errors = inr.errors || {};
-    //   expect(errors["required"]).toBeFalsy();
+      // Set inr to something
+      inr.setValue(0);
+      errors = inr.errors || {};
+      expect(errors["required"]).toBeFalsy();
   
-    //   // Set inr to something correct
-    //   inr.setValue(1000);
-    //   errors = inr.errors || {};
-    //   expect(errors["required"]).toBeFalsy();
-    // });
+      // Set inr to something correct
+      inr.setValue(1000);
+      errors = inr.errors || {};
+      expect(errors["required"]).toBeFalsy();
+    });
   
-  //   it("paisa field validation toBeFalsy() toBeTruthy() ", () => {
-  //     let errors:any = {};
-  //     let paisa = component.fitnessForm.controls["paisa"];
-  //     expect(paisa.valid).toBeFalsy();
+    it("paisa field validation toBeFalsy() toBeTruthy() ", () => {
+      let errors:any = {};
+      let paisa = component.fitnessForm.controls["paisa"];
+      expect(paisa.valid).toBeFalsy();
   
-  //     // paisa field is required
-  //     errors = paisa.errors || {};
-  //     expect(errors["required"]).toBeTruthy();
+      // paisa field is required
+      errors = paisa.errors || {};
+      expect(errors["required"]).toBeTruthy();
   
-  //     // Set paisa to something
-  //     paisa.setValue(0);
-  //     errors = paisa.errors || {};
-  //     expect(errors["required"]).toBeFalsy();
+      // Set paisa to something
+      paisa.setValue(0);
+      errors = paisa.errors || {};
+      expect(errors["required"]).toBeFalsy();
   
-  //     // Set paisa to something correct
-  //     paisa.setValue(10);
-  //     errors = paisa.errors || {};
-  //     expect(errors["required"]).toBeFalsy();
-  //   });
+      // Set paisa to something correct
+      paisa.setValue(10);
+      errors = paisa.errors || {};
+      expect(errors["required"]).toBeFalsy();
+    });
   
   })
 

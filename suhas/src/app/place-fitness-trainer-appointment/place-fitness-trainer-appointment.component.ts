@@ -37,12 +37,12 @@ export class PlaceFitnessTrainerAppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.fitnessForm = this.formBuilder.group({
       firstname: ['', Validators.required],
-      amount: [''],
+      inr: ['',Validators.required],
       age: ['', [Validators.required, Validators.min(18), Validators.max(99)]],
       email: ["", [Validators.required,Validators.pattern("[^ @]*@[^ @]*")]],
       phonenumber: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       streetaddress: ['', Validators.required],
-      addressline2: [''],
+      addressline2: ['',Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
       country: ['', Validators.required],
@@ -50,7 +50,9 @@ export class PlaceFitnessTrainerAppointmentComponent implements OnInit {
       trainerpreference: ['', Validators.required],
       physiotherapist: ['', Validators.required],
       packages: ['', Validators.required],
-      weeks: ['']
+      weeks: [''],
+      paisa:['',Validators.required]
+
       
     });
 
@@ -77,7 +79,7 @@ export class PlaceFitnessTrainerAppointmentComponent implements OnInit {
     const physioValue = this.fitnessForm.get('physiotherapist')?.value === 'Yes' ? 200 : 0;
     const packageAmount = this.calculateFinalAmount(packageValue);
     const finalAmount = packageAmount + physioValue;
-    this.fitnessForm.get('amount')?.setValue(finalAmount);
+    this.fitnessForm.get('inr')?.setValue(finalAmount);
   }
   
 
