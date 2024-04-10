@@ -32,30 +32,34 @@ export class ContactUsComponent implements OnInit {
       lastname: ["", [Validators.required]],
       phonenumber: ["", [Validators.required]],
       email: ["", [Validators.required,Validators.pattern("[^ @]*@[^ @]*")]],
-      message:["",[Validators.required]]
+      message:["",[Validators.required,Validators.max(200)]]
     });
   }
 
   onSubmit() {
-    this.obj = { ...this.contactForm.value, ...this.obj };
-    this.contactForm.value;
-    console.log(
-      "LOG: LoginComponent -> onSubmit -> this.contactForm.value",
-      this.contactForm.value
-    );
-
-    this.UserService.postQuery(this.contactForm.value)
-    .pipe(
-      catchError(error=>{
-        console.log(error('Error posting form Data',error));
-        return throwError(error)
-      
-      })
-    ).subscribe(response=>{
-      console.log("FOrm submitted Successfully",response);
-    })
+   
     
     if (this.contactForm.valid) {
+      this.obj = { ...this.contactForm.value, ...this.obj };
+      this.contactForm.value;
+      console.log(
+        "LOG: LoginComponent -> onSubmit -> this.contactForm.value",
+        this.contactForm.value
+      );
+  
+      this.UserService.postQuery(this.contactForm.value)
+      .pipe(
+        catchError(error=>{
+          console.log(error('Error posting form Data',error));
+          alert("Error in Form Submitting")
+          return throwError(error)
+        
+        })
+      ).subscribe(response=>{
+        console.log("FOrm submitted Successfully",response);
+        alert("Form Submitted Successfully")
+        this.contactForm.reset();
+      })
       this.contactdata.emit(
         new Contact(
           this.contactForm.value.firstname,
@@ -65,6 +69,9 @@ export class ContactUsComponent implements OnInit {
           this.contactForm.value.message
         )
       );
+    }
+    else{
+      alert("Plaese Enter all the Deatils")
     }
   }
 }

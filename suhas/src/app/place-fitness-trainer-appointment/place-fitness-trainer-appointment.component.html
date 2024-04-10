@@ -101,7 +101,7 @@
   
       <!-- Weeks and Amount (RS) -->
       <div class="row mb-3">
-        <div class="col">
+        <div class="col" *ngIf="isWeeksInputVisible()">
           <input  type="number" class="form-control" placeholder="Weeks" formControlName="weeks">
         </div>
         <div class="col">

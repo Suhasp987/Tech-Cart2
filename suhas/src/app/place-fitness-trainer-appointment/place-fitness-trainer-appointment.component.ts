@@ -31,7 +31,7 @@ export class formData {
 export class PlaceFitnessTrainerAppointmentComponent implements OnInit {
   fitnessForm!: FormGroup;
   showWeeksInput: boolean = false;
-
+   appoint:any[]=[]
   constructor(private formBuilder: FormBuilder, private UserService:UserService) {}
 
   ngOnInit(): void {
@@ -54,18 +54,32 @@ export class PlaceFitnessTrainerAppointmentComponent implements OnInit {
       
     });
 
-    
+    this.UserService.getfitnessdata().subscribe(
+      (appointments:any) => {
+        this.appoint = appointments;
+      },
+      (error:any) => {
+        console.error('Error fetching appointments:', error);
+      }
+    );
 
     this.fitnessForm.get('packages')?.valueChanges.subscribe((value: string) => {
-      console.log('value',this.fitnessForm.value);
-      const packageAmount = this.calculateFinalAmount(value);
-       console.log('Amount:', this.fitnessForm.get('amount')?.value);
-      const physioAmount = this.fitnessForm.value.physiotherapist === 'Yes' ? 200 : 0;
-      const finalAmount = packageAmount + physioAmount;
-      this.fitnessForm.get('amount')?.setValue(finalAmount);
-      console.log('Amount:', this.fitnessForm.get('amount')?.value);
+      this.updateAmount();
+    });
+
+    this.fitnessForm.get('physiotherapist')?.valueChanges.subscribe(() => {
+      this.updateAmount();
     });
   }
+
+  updateAmount() {
+    const packageValue = this.fitnessForm.get('packages')?.value;
+    const physioValue = this.fitnessForm.get('physiotherapist')?.value === 'Yes' ? 200 : 0;
+    const packageAmount = this.calculateFinalAmount(packageValue);
+    const finalAmount = packageAmount + physioValue;
+    this.fitnessForm.get('amount')?.setValue(finalAmount);
+  }
+  
 
   
   calculateFinalAmount(packageName: string): number {
@@ -87,8 +101,27 @@ export class PlaceFitnessTrainerAppointmentComponent implements OnInit {
     return amount;
   }
 
-
+  isWeeksInputVisible(): boolean {
+    const selectedPackage = this.fitnessForm.get('packages')?.value;
+    return selectedPackage === 'Package B' || selectedPackage === 'Package C';
+  }
   onSubmit(): void {
+    const email = this.fitnessForm.get('email')?.value;
+    const phoneNumber = this.fitnessForm.get('phonenumber')?.value;
+
+    // Check if email or phone number already exists in appointments
+    const emailExists = this.appoint.some(appointment => appointment.email === email);
+    const phoneExists = this.appoint.some(appointment => appointment.phonenumber === phoneNumber);
+
+    if (emailExists) {
+      alert('Email already exists. Please use a different email.');
+      return;
+    }
+
+    if (phoneExists) {
+      alert('Phone number already exists. Please use a different phone number.');
+      return;
+    }
     console.log(this.fitnessForm.value);
     console.log('Amount:', this.fitnessForm.get('amount')?.value);
     if (this.fitnessForm.valid) {
@@ -101,11 +134,14 @@ export class PlaceFitnessTrainerAppointmentComponent implements OnInit {
         .pipe(
           catchError(error => {
             console.error('Error posting form data:', error);
+            alert("Error in form submitting")
             return throwError(error);
           })
         )
         .subscribe(response => {
           console.log('Form submitted successfully. Response:', response?.amount);
+          alert("FOrm Submitted Sucessfully")
+          this.fitnessForm.reset();
           // Handle success, e.g., display success message or navigate to another page
         });
     } else {
