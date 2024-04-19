@@ -77,7 +77,7 @@ const Home = () => {
         </DialogActions>
       </Dialog>
       <Navbar  name={userName}/>
-      <SideBar state={state}/>
+     
     </div>
   );
 };
