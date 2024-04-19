@@ -2,7 +2,7 @@ import React from 'react'
 import {useState,useEffect} from 'react'
 import { Typography,Box,Stack } from '@mui/material'
 import SideComponent from './SideComponent'
-import ItemCard from './ItemCard'
+// import ItemCard from './ItemCard'
 import Account from './Account'
 import Hero from './Hero'
 import { useParams } from 'react-router-dom'
@@ -20,7 +20,7 @@ const SideBar = ({state}) => {
        <Box p={2} sx={{overflowY:'auto',height:'90vh',flex:2}}>
          <Typography style={{color:'#f31503'}} variant='h4' fontWeight="bold" mb={2} sx={{color:'black'}}>{params.text}</Typography>
        
-        {params.text === 'Home' ? <Hero />:params.text==='Account'?<Account />:<ItemCard />}
+        {params.text === 'Home' ? <Hero />:params.text==='Account'?<Account />:<Account/>}
        
           
        </Box>
