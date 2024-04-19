@@ -16,7 +16,7 @@ function App() {
           <Route path='/login' element={<Signup/>} />
           <Route path='/' element={<Home/>}/>
           <Route path='/:text' element={<Home/>} />
-
+          
        </Routes>
     </BrowserRouter>
 

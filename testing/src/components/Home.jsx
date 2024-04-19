@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-// import SideBar from './SideBar';
+import SideBar from './SideBar';
 import Navbar from './Navbar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -77,7 +77,7 @@ const Home = () => {
         </DialogActions>
       </Dialog>
       <Navbar  name={userName}/>
-     
+     <SideBar  name={userName}/>
     </div>
   );
 };
