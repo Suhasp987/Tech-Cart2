@@ -5,6 +5,8 @@ import { useLocation } from 'react-router-dom';
 import './Navbar.css'
 import {Button} from '@mui/material';
 import {Box} from '@mui/material';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 const Navbar = () => {
   const navigate=useNavigate();
   const location = useLocation();

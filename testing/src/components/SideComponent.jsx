@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useSearchParams ,useNavigate} from 'react-router-dom';
-
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import { Stack } from '@mui/material';
 import { Categories } from './utils/constant';
 // import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
